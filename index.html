@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shortpay — деньги за просмотры коротких роликов</title>
+<meta name="description" content="Рекламодатели платят нарезчикам за подтверждённые просмотры в YouTube Shorts, TikTok и Instagram Reels.">
+<meta name="theme-color" content="#0d0d0e">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Shortpay — шортсы, которые платят">
+<meta property="og:description" content="Нарезай ролики с баннером рекламодателя и получай деньги за каждый подтверждённый просмотр.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d0e;--surface:#18181b;--surface-2:#202024;--line:rgba(255,255,255,.08);--text:#fff;--text-2:#d4d4d8;--muted:#8e8e96;--orange:#ff5a1f;--orange-2:#ff7a45;--orange-deep:#c43d0b;--green:#3ddc84;--green-soft:rgba(61,220,132,.14)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.top{position:sticky;top:0;z-index:10;height:64px;display:flex;align-items:center;background:rgba(13,13,14,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo{display:inline-flex;align-items:center;font-size:24px;line-height:1;font-weight:900;font-style:italic;letter-spacing:-.035em}
+.logo svg{width:1.02em;height:1.02em;margin:0 .02em;transform:translateY(.02em)}
+.logo .pay{color:var(--orange);margin-left:.03em}
+.cut{position:relative;display:inline-block}
+.cut::after{content:"";position:absolute;left:.2em;top:.16em;width:.075em;height:.5em;background:var(--bg);transform:rotate(34deg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;font-size:15px;padding:10px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:var(--surface-2);color:#fff;cursor:pointer;white-space:nowrap;transition:background .15s,transform .1s}
+.btn:hover{background:#2a2a2f}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--orange);border:0;border-bottom:4px solid var(--orange-deep);padding-bottom:8px}
+.btn-primary:hover{background:var(--orange-2)}
+.btn-white{background:#fff;color:#0d0d0e;border:0}
+.btn-white:hover{background:#e9e9ec}
+.btn-lg{font-size:18px;padding:17px 44px 13px;border-radius:14px}
+.btn-ghost{background:transparent;border-color:transparent}
+.hero{position:relative;min-height:calc(100vh - 64px);display:flex;align-items:flex-end;overflow:hidden;background:#000}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:drift 30s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.14) translate(-1.5%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.25) 40%,rgba(13,13,14,.92) 88%,#0d0d0e 100%)}
+.hero .in{position:relative;z-index:2;width:100%;padding-bottom:88px}
+.hero h1{font-size:clamp(48px,9vw,128px);font-weight:600;letter-spacing:-.055em;line-height:.95;margin:0 0 22px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{font-size:clamp(19px,2.2vw,28px);letter-spacing:-.02em;color:#e4e4e7;margin:0 0 40px;max-width:760px}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.sec{padding:96px 0}
+.sec h2{font-size:clamp(28px,4vw,44px);letter-spacing:-.035em;line-height:1.08;margin:0 0 14px}
+.sub{color:var(--muted);font-size:18px;max-width:620px;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+.card .n{width:34px;height:34px;border-radius:10px;background:var(--orange);display:grid;place-items:center;font-weight:800;margin-bottom:16px}
+.card h3{margin:0 0 8px;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.side{border-radius:22px;padding:34px;min-height:300px;display:flex;flex-direction:column}
+.side.a{background:var(--surface);border:1px solid var(--line)}
+.side.b{background:var(--orange)}
+.side h3{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.03em;margin:0 0 12px}
+.side ul{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:10px}
+.side li{display:flex;gap:10px;align-items:flex-start;opacity:.92}
+.side li::before{content:"";flex:none;width:8px;height:8px;margin-top:8px;border-radius:2px;background:var(--orange)}
+.side.b li::before{background:#fff}
+.side .btn{margin-top:auto;align-self:flex-start}
+.example{display:inline-flex;gap:8px;align-items:center;margin-top:14px;font-size:14px;color:var(--text-2)}
+.rate{background:var(--green-soft);color:var(--green);font-weight:700;padding:4px 10px;border-radius:9px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:36px}
+.rules .card b{display:block;margin-bottom:6px}
+.faq{max-width:820px;margin-top:28px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 0;font-size:17px;font-weight:600;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--muted);font-size:22px;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--text-2);margin:0 0 20px;line-height:1.65}
+.apply{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.apply h2{margin:0 0 8px}
+.foot{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:32px 0 48px}
+.foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+@media(max-width:860px){.grid3,.split{grid-template-columns:1fr}.sec{padding:64px 0}.hero{min-height:86vh}.hero .in{padding-bottom:56px}.btn-lg{width:100%}.apply{padding:28px}.top .btn-ghost{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Shortpay">
+      <span>Sh</span>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#ff5a1f"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="#d9430e" stroke-width="2.5"/><path d="M33 13.5a17.5 17.5 0 0 1 5 7" fill="none" stroke="#ff8a5c" stroke-width="2.5" stroke-linecap="round"/><text x="24" y="32.5" text-anchor="middle" font-size="25" font-weight="900" fill="#fff" font-family="Inter,Arial,sans-serif">$</text></svg>
+      <span>rt</span><span class="pay"><span class="cut">p</span>ay</span>
+    </a>
+    <div>
+      <a href="#how" class="btn btn-ghost">Как это работает</a>
+      <a href="#apply" class="btn btn-primary" style="padding-bottom:6px;border-bottom-width:3px">Оставить заявку</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1490810194309-344b3661ba39?w=1920&q=80" alt="">
+  <div class="wrap in">
+    <h1>Шортсы, которые <em>платят.</em></h1>
+    <p>Нарезай ролики с баннером рекламодателя и получай деньги за каждый подтверждённый просмотр в YouTube Shorts, TikTok и Reels.</p>
+    <div class="cta">
+      <a href="#apply" class="btn btn-primary btn-lg">Начать</a>
+      <a href="#sides" class="btn btn-ghost btn-lg">Я рекламодатель →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <h2>Как это работает</h2>
+    <p class="sub">Три шага от кампании до выплаты.</p>
+    <div class="grid3">
+      <div class="card"><div class="n">1</div><h3>Выберите кампанию</h3><p>Ставка за 1000 просмотров, максимум за ролик и площадки видны сразу.</p></div>
+      <div class="card"><div class="n">2</div><h3>Нарежьте и опубликуйте</h3><p>Ролик с баннером рекламодателя в Shorts, TikTok или Reels. Ссылку присылаете в кабинет.</p></div>
+      <div class="card"><div class="n">3</div><h3>Получите оплату</h3><p>После проверки просмотров и 7 дней холда рекламодатель платит вам напрямую.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="sides" style="padding-top:0">
+  <div class="wrap">
+    <h2>Две стороны. Одни правила.</h2>
+    <div class="split">
+      <div class="side a">
+        <h3>Нарезчикам</h3>
+        <ul>
+          <li>Ставка за 1000 просмотров видна до старта</li>
+          <li>Без подписчиков и вложений</li>
+          <li>Видно, какой рекламодатель реально платит</li>
+          <li>Не заплатили: открываете спор</li>
+        </ul>
+        <a href="#apply" class="btn btn-primary">Стать нарезчиком</a>
+        <span class="example">25 000 просмотров × <span class="rate">100 ₽/1K</span> = 2 500 ₽</span>
+      </div>
+      <div class="side b">
+        <h3>Рекламодателям, стримерам, блогерам</h3>
+        <ul>
+          <li>Десятки нарезчиков делают ролики с вашим баннером</li>
+          <li>Ставку, максимум за ролик и лимиты задаёте сами</li>
+          <li>Платите только за подтверждённые просмотры</li>
+          <li>Бюджет не уйдёт в минус</li>
+        </ul>
+        <a href="#apply" class="btn btn-white">Запустить кампанию</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <h2>Платим только за настоящие просмотры</h2>
+    <p class="sub">Каждый ролик и каждый отчёт проверяет человек.</p>
+    <div class="rules">
+      <div class="card"><b>Проверка аккаунта</b><span style="color:var(--muted)">Ролики только с подтверждённого аккаунта нарезчика.</span></div>
+      <div class="card"><b>Скриншот при публикации</b><span style="color:var(--muted)">Сразу после выхода ролика: видно аудиторию и старт просмотров.</span></div>
+      <div class="card"><b>Холд 7 дней</b><span style="color:var(--muted)">Удалили ролик или накрутили просмотры: деньги вернутся в бюджет.</span></div>
+      <div class="card"><b>Споры</b><span style="color:var(--muted)">Не заплатили или отклонили несправедливо: решает администрация.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <h2>Вопросы</h2>
+    <div class="faq">
+      <details><summary>Сколько можно заработать?</summary><p>Ставку задаёт рекламодатель, она указана в кампании как «₽ за 1000 просмотров». У каждой кампании есть максимум за один ролик.</p></details>
+      <details><summary>Какие площадки подходят?</summary><p>YouTube Shorts, TikTok и Instagram Reels. Какие именно, указано в каждой кампании.</p></details>
+      <details><summary>Как приходят деньги?</summary><p>После проверки просмотров начисление 7 дней лежит на холде. Потом рекламодатель переводит деньги напрямую по вашим реквизитам, а вы подтверждаете получение.</p></details>
+      <details><summary>Когда запуск?</summary><p>Мы собираем первых нарезчиков и рекламодателей. Оставьте заявку, и мы напишем, когда откроем кабинеты.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="apply" style="padding-top:0">
+  <div class="wrap">
+    <div class="apply">
+      <div>
+        <h2>Оставить заявку</h2>
+        <p class="sub">Напишите в Telegram, кто вы: нарезчик или рекламодатель. Ответим и подключим к первым кампаниям.</p>
+      </div>
+      <a href="https://t.me/Bulat_WW" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Shortpay</span>
+    <span>YouTube Shorts · TikTok · Instagram Reels</span>
+  </div>
+</footer>
+</body>
+</html>
